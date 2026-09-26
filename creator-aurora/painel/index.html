@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Painel | Aurora Creator</title>
+  <meta name="description"
+    content="Acesse o painel Aurora Creator. Gerencie roteiros, assets, boards e estratégias de produção.">
+  <meta name="robots" content="noindex, nofollow">
+  
+
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://creator.mcaurora.com.br/painel/">
+  <meta property="og:title" content="Painel | Aurora Creator">
+  <meta property="og:description" content="Acesse o painel Aurora Creator.">
+  <meta property="og:image" content="https://creator.mcaurora.com.br/aurora-icon.png">
+  <meta property="og:site_name" content="Aurora Creator">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Painel | Aurora Creator">
+  <meta name="twitter:description" content="Acesse o painel Aurora Creator.">
+
+  
+  <meta name="theme-color" content="#100c16">
+  <link rel="icon" type="image/png" sizes="512x512" href="../aurora-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bangers&family=Russo+One&family=Orbitron:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css?v=aurora-creator-5">
+  <link rel="stylesheet" href="../aurora-shared.css?v=aurora-creator-2">
+  <link rel="stylesheet" href="../panel-redesign.css?v=panel-redesign-4">
+  <link rel="shortcut icon" href="../aurora-icon.png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="aurora-panel">
+
+  
+  
+  <div id="initial-loading">
+    <div class="intro-bg"></div>
+
+    <div class="intro-center">
+      
+      <div class="intro-icon-wrap">
+        <img src="../aurora-icon.png" alt="Aurora Creator" class="intro-icon">
+        <div class="intro-icon-glow"></div>
+        <svg class="intro-icon-arc" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="54" stroke="url(#arcGrad1)" stroke-width="1.5" stroke-dasharray="120 220"
+            stroke-linecap="round"
+            style="animation: introArcSpin1 3s ease-in-out infinite;transform-origin:60px 60px" />
+          <circle cx="60" cy="60" r="54" stroke="url(#arcGrad2)" stroke-width="1" stroke-dasharray="60 280"
+            stroke-linecap="round"
+            style="animation: introArcSpin2 4s ease-in-out infinite reverse;transform-origin:60px 60px" />
+          <defs>
+            <linearGradient id="arcGrad1" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#A996E0" stop-opacity="0" />
+              <stop offset="50%" stop-color="#A996E0" stop-opacity=".9" />
+              <stop offset="100%" stop-color="#63D9E0" stop-opacity=".45" />
+            </linearGradient>
+            <linearGradient id="arcGrad2" x1="120" y1="0" x2="0" y2="120" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#F0C34E" stop-opacity="0" />
+              <stop offset="60%" stop-color="#F0C34E" stop-opacity=".6" />
+              <stop offset="100%" stop-color="#A996E0" stop-opacity=".25" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      
+      <div class="intro-wordmark">
+        <span class="intro-letter" style="--i:0">A</span>
+        <span class="intro-letter" style="--i:1">U</span>
+        <span class="intro-letter" style="--i:2">R</span>
+        <span class="intro-letter" style="--i:3">O</span>
+        <span class="intro-letter" style="--i:4">R</span>
+        <span class="intro-letter" style="--i:5">A</span>
+      </div>
+
+      
+      <div class="intro-tagline">CARREGANDO PLATAFORMA</div>
+
+      
+      <div class="intro-progress-track">
+        <div class="intro-progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <section id="auth-screen">
+    <div class="auth-box">
+      <div class="auth-logo">
+        <div class="auth-logo-main"><span style="color:var(--red);-webkit-text-fill-color:var(--red)">AURORA</span> CREATOR</div>
+        <div class="auth-logo-sub">Painel de Produção</div>
+      </div>
+      <div class="auth-title">Acesso restrito</div>
+      <div class="auth-field">
+        <label>E-mail</label>
+        <input type="email" id="login-email" placeholder="seu@email.com">
+      </div>
+      <div class="auth-field">
+        <label>Senha</label>
+        <input type="password" id="login-password" placeholder="••••••••">
+      </div>
+      <button class="auth-btn" id="login-btn">Entrar</button>
+      <div style="display:flex;align-items:center;gap:10px;margin:16px 0;">
+        <div style="flex:1;height:1px;background:rgba(245,197,24,0.12);"></div>
+        <span
+          style="font-family:var(--font-ui);font-size:.5rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;">ou</span>
+        <div style="flex:1;height:1px;background:rgba(245,197,24,0.12);"></div>
+      </div>
+
+      <button class="auth-google-btn" id="google-login-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+            fill="#4285F4" />
+          <path
+            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+            fill="#34A853" />
+          <path
+            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+            fill="#FBBC05" />
+          <path
+            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+            fill="#EA4335" />
+        </svg>
+        Continuar com Google
+      </button>
+      <div class="auth-error" id="auth-error"></div>
+    </div>
+  </section>
+
+  
+  <button class="sidebar-toggle" id="sidebar-toggle">
+    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  </button>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  
+  <section id="panel">
+    
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-main"><a href="../"><span class="sidebar-logo-dot">AURORA</span> CREATOR</a></div>
+        <div class="sidebar-logo-sub">Painel de Produção</div>
+      </div>
+      <div class="sidebar-nav">
+        <div class="nav-label">Criação</div>
+        <button class="nav-item active" data-tab="roteiros">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          Roteiros
+        </button>
+        <button class="nav-item" data-tab="board">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <line x1="9" y1="3" x2="9" y2="21" />
+            <line x1="15" y1="3" x2="15" y2="21" />
+          </svg>
+          Board
+        </button>
+        <button class="nav-item" data-tab="canal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path
+              d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+          </svg>
+          Canal (beta)
+        </button>
+        <button class="nav-item" data-tab="skins">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="9" height="9" rx="1" />
+            <rect x="13" y="2" width="9" height="9" rx="1" />
+            <rect x="2" y="13" width="9" height="9" rx="1" />
+            <rect x="13" y="13" width="9" height="9" rx="1" />
+          </svg>
+          Skins
+        </button>
+        <button class="nav-item" data-tab="musicas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18V5l12-2v13" />
+            <circle cx="6" cy="18" r="3" />
+            <circle cx="18" cy="16" r="3" />
+          </svg>
+          Músicas
+        </button>
+        <button class="nav-item" data-tab="avatar">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="3" width="9" height="9" rx="1" />
+            <rect x="13" y="3" width="9" height="9" rx="1" />
+            <rect x="2" y="14" width="9" height="7" rx="1" />
+            <rect x="13" y="14" width="9" height="7" rx="1" />
+          </svg>
+          AvatarMaker
+        </button>
+        <button class="nav-item" data-tab="assets">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <circle cx="8.5" cy="8.5" r="1.5" />
+            <polyline points="21 15 16 10 5 21" />
+          </svg>
+          Texturas
+        </button>
+        <button class="nav-item" data-tab="ranking">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
+          </svg>
+          Ranking
+        </button>
+        <button class="nav-item" data-tab="estrategia">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M2 20h.01M7 20v-4" />
+            <path d="M12 20V10" />
+            <path d="M17 20V4" />
+            <path d="M22 20h.01" />
+          </svg>
+          Estratégia
+        </button>
+        <button class="nav-item admin-only-nav" data-tab="admin" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2z" />
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            <circle cx="19" cy="8" r="3" />
+            <line x1="19" y1="5" x2="19" y2="11" />
+            <line x1="16" y1="8" x2="22" y2="8" />
+          </svg>
+          Admin
+        </button>
+      </div>
+      <div class="sidebar-footer">
+        <div class="sidebar-user-name" id="sidebar-user-name"></div>
+        <div class="sidebar-user-email" id="sidebar-user-email"></div>
+        <div class="sidebar-user-role" id="sidebar-user-role" style="display:none"></div>
+        <div class="sidebar-footer-btns">
+          <button class="sidebar-btn" id="profile-btn">Perfil</button>
+          <button class="sidebar-btn logout" id="logout-btn">Sair</button>
+        </div>
+      </div>
+    </nav>
+
+    
+    <div class="panel-content">
+
+      
+      <div class="tab-pane active" id="tab-roteiros">
+        <div id="dashboard" style="display:block;">
+          <header class="dash-header">
+            <div>
+              <div class="page-header-title">ROTEIROS</div>
+              <div class="page-header-sub">Seu arco narrativo</div>
+            </div>
+            <button class="btn-new" id="new-project-btn">
+              <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Novo Projeto
+            </button>
+          </header>
+          <div class="dash-hero">
+            <h1>SEU ARCO<br><span>NARRATIVO</span></h1>
+            <p>Organize ideias, roteiros e etapas da produção em um só fluxo.</p>
+          </div>
+          <div class="projects-section">
+            <h2>Meus Projetos</h2>
+            <div id="projects-container"></div>
+            <div id="public-projects-section">
+              <div class="section-divider">
+                <div class="section-divider-label">
+                  <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  Roteiros Públicos
+                </div>
+              </div>
+              <div id="public-projects-container"></div>
+            </div>
+          </div>
+        </div>
+        <div id="editor" style="display:none;">
+          <header class="editor-header">
+            <button class="back-btn" id="back-btn">
+              <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              Projetos
+            </button>
+            <input class="project-name-input" id="project-name-input" placeholder="NOME DO PROJETO" maxlength="60">
+            <div class="editor-actions">
+              <span class="autosave-badge" id="autosave-badge">— auto-save</span>
+              <button class="action-btn" id="generate-script-btn">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+                <span>Gerar Roteiro</span>
+              </button>
+              <button class="action-btn" id="export-btn">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                <span>Exportar</span>
+              </button>
+              <button class="action-btn primary" id="save-project-btn">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" />
+                  <polyline points="17 21 17 13 7 13 7 21" />
+                  <polyline points="7 3 7 8 15 8" />
+                </svg>
+                <span>Salvar</span>
+              </button>
+            </div>
+          </header>
+          <div class="editor-body">
+            <div class="cycle-panel">
+              <div class="cycle-title">Ciclo de Storytelling</div>
+              <div class="cycle-svg-wrapper">
+                <div id="cycle-container"></div>
+              </div>
+              <div class="steps-list" id="steps-list"></div>
+              <div class="visibility-section" id="visibility-section" style="width:100%;max-width:420px;display:none;">
+                <div class="visibility-label">Visibilidade do roteiro</div>
+                <div class="visibility-toggle" id="visibility-toggle"></div>
+              </div>
+            </div>
+            <div class="script-panel">
+              <div class="script-panel-header">
+                <h3>Roteiro Completo</h3>
+                <div style="display:flex;gap:16px;align-items:center;">
+                  <div class="word-count">Palavras: <span id="word-count">0</span></div>
+                  <div class="word-count">Chars: <span id="char-count">0</span></div>
+                </div>
+              </div>
+              <textarea class="script-textarea" id="script-textarea" style="display:none;"
+                placeholder="Escreva seu roteiro aqui, ou clique em &quot;Gerar Roteiro&quot; para montar automaticamente a partir das suas anotações…"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="tab-pane" id="tab-board">
+        <div class="board-header">
+          <div>
+            <div class="page-header-title">BOARD</div>
+            <div class="page-header-sub">Gestão visual de tarefas</div>
+          </div>
+          <div class="board-header-actions">
+            <button class="btn-new" id="board-new-board-btn">
+              <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Novo Board
+            </button>
+            <button class="action-btn" id="boardShareBtn" style="background:transparent;" title="Compartilhar">
+              <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" width="14" height="14">
+                <circle cx="18" cy="5" r="3" />
+                <circle cx="6" cy="12" r="3" />
+                <circle cx="18" cy="19" r="3" />
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+              </svg>
+              Compartilhar
+            </button>
+            <button class="action-btn" id="boardRefreshBtn" style="background:transparent;" title="Atualizar">
+              <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" width="14" height="14">
+                <polyline points="23 4 23 10 17 10" />
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+              </svg>
+              Atualizar
+            </button>
+          </div>
+        </div>
+
+        <div class="board-interface">
+          
+          <div class="boards-bar">
+            <div class="board-bar-container">
+              <div class="board-dropdown" id="boardDropdown">
+                <button class="board-current" id="boardCurrent">
+                  <span id="boardCurrentTitle">Carregando...</span>
+                  <span class="arrow">▾</span>
+                </button>
+                <div class="board-menu" id="boardMenu"></div>
+              </div>
+              <button class="board-bar-btn" id="boardRenameBtn" title="Renomear">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" width="14" height="14">
+                  <path d="M17 3l4 4-7 7H10v-4l7-7z" />
+                  <path d="M4 20h16" />
+                </svg>
+              </button>
+              <button class="board-bar-btn" id="boardDeleteBtn" title="Excluir">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" width="14" height="14">
+                  <polyline points="3 6 5 6 21 6" />
+                  <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          
+          <div class="board-wrapper">
+            <div id="boardContainer" class="board-container">
+              <div class="list add-list">
+                <input id="newListTitle" class="board-input" placeholder="Nova lista...">
+                <button id="createListBtn" class="board-btn-secondary">+ Criar lista</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="tab-pane" id="tab-skins">
+        <header class="assets-header">
+          <div>
+            <div class="page-header-title">SKINS</div>
+            <div class="page-header-sub">Biblioteca de skins por player</div>
+          </div>
+        </header>
+        <div id="skins-body"></div>
+      </div>
+
+
+
+      <div class="tab-pane" id="tab-musicas">
+        <header class="assets-header">
+          <div>
+            <div class="page-header-title">MÚSICAS</div>
+            <div class="page-header-sub">Biblioteca de trilhas sonoras | Direitors autorais pertencentes à Epidemic Sound</div>
+          </div>
+        </header>
+        <div id="musicas-body" class="musicas-body"></div>
+      </div>
+
+
+
+      
+      <div class="tab-pane" id="tab-avatar">
+        <header class="assets-header">
+          <div>
+            <div class="page-header-title">AVATAR</div>
+            <div class="page-header-sub">Gere renders limpas a partir de qualquer skin</div>
+          </div>
+        </header>
+
+        <div class="avatar-panel">
+          <div class="input-area">
+            <div class="avatar-tabs">
+              <div class="avatar-tab active" data-tab="nick">Por Nick</div>
+              <div class="avatar-tab" data-tab="file">Por Arquivo</div>
+            </div>
+            <div class="avatar-tab-panel active" id="avatar-panel-nick">
+              <input type="text" id="avatar-nick" placeholder="Digite o nick do jogador" />
+              <button class="btn-gerar" id="avatar-load-nick">Gerar</button>
+            </div>
+            <div class="avatar-player-id" id="avatar-player-id" style="display:none;">
+              <span>UUID do jogador</span><code id="avatar-uuid">—</code><button class="action-btn" id="avatar-copy-uuid">Copiar</button>
+            </div>
+            <div class="avatar-tab-panel" id="avatar-panel-file">
+              <div class="drop-zone" id="avatar-drop-zone">
+                <span id="avatar-drop-label">◆ Clique ou arraste uma skin (.png)</span>
+              </div>
+              <input type="file" id="avatar-file-input" accept="image/png" />
+              <div style="display:flex; justify-content:flex-end; margin-top:10px;">
+                <button class="btn-gerar" id="avatar-load-file">Gerar</button>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="avatar-download-skin-wrap">
+            <div class="avatar-section-label">Download da Skin</div>
+            <div class="avatar-download-skin-btns">
+              <button class="action-btn" id="avatar-download-skin-original">
+                ⬇ Skin Original (64×64)
+              </button>
+              <button class="action-btn primary" id="avatar-download-skin-2048">
+                ⬇ Skin HD (2048×2048)
+              </button>
+            </div>
+          </div>
+
+          <div class="error" id="avatar-error"></div>
+
+          <div class="grid-heads">
+            <div class="card">
+              <p>Frente</p>
+              <canvas id="cv-front"></canvas>
+              <button class="download" data-canvas="cv-front" data-name="frente">Baixar</button>
+            </div>
+            <div class="card">
+              <p>Lado esquerdo</p>
+              <canvas id="cv-left"></canvas>
+              <button class="download" data-canvas="cv-left" data-name="esquerdo">Baixar</button>
+            </div>
+            <div class="card">
+              <p>Lado direito</p>
+              <canvas id="cv-right"></canvas>
+              <button class="download" data-canvas="cv-right" data-name="direito">Baixar</button>
+            </div>
+          </div>
+
+
+          <div class="arms-wrapper">
+            <div class="card-arms">
+              <p>Braços <span id="model-badge" class="model-badge" style="display:none"></span></p>
+              <canvas id="cv-arms"></canvas>
+              <button class="download" data-canvas="cv-arms" data-name="bracos">Baixar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="tab-pane" id="tab-assets">
+        <header class="assets-header">
+          <div>
+            <div class="page-header-title">TEXTURAS</div>
+            <div class="page-header-sub">Biblioteca Minecraft em alta qualidade</div>
+          </div>
+          <button class="btn-new" id="assets-refresh-btn">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"
+              style="width:14px;height:14px;">
+              <polyline points="23 4 23 10 17 10" />
+              <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10" />
+            </svg>
+            Atualizar
+          </button>
+        </header>
+        <div class="assets-body">
+          <div class="texture-library-intro">
+            <div class="texture-library-copy"><span>Biblioteca completa</span><strong>Todas as texturas do jogo em alta qualidade</strong><p>Escolha o pacote visual e encontre arquivos organizados por versão e categoria.</p></div>
+            <label class="texture-version-control">
+              <span class="texture-version-label"><small>Versão do jogo</small><strong>Minecraft</strong></span>
+              <span class="texture-version-select"><select id="assets-version-select" aria-label="Versão do Minecraft"><option value="26.3">26.3</option></select><svg aria-hidden="true" viewBox="0 0 20 20"><path d="m6 8 4 4 4-4"/></svg></span>
+            </label>
+          </div>
+          <div class="texture-pack-switch" id="assets-pack-switch" role="group" aria-label="Pacote de texturas">
+            <button class="texture-pack-option active" type="button" data-pack="minecraft"><span class="texture-pack-image"><img src="/assets/images/texture-packs/vanilla.jpg" alt="" aria-hidden="true"></span><span><strong>Vanilla</strong><small>Texturas originais do Minecraft</small></span></button>
+            <button class="texture-pack-option" type="button" data-pack="barebones"><span class="texture-pack-image"><img src="/assets/images/texture-packs/barebones.png" alt="" aria-hidden="true"></span><span><strong>Bare Bones</strong><small>Visual limpo e simplificado</small></span></button>
+          </div>
+          <div class="assets-search-bar">
+            <input class="assets-search-input" id="assets-search" placeholder="Buscar textura…">
+            <div class="assets-filter-btns" id="assets-filter-btns"></div>
+          </div>
+          <div id="assets-container">
+            <div class="loading-state"><span class="spinner"></span> Carregando assets…</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-ranking">
+        <header class="dash-header">
+          <div>
+            <div class="page-header-title">RANKING</div>
+            <div class="page-header-sub">Classificação dos Criadores</div>
+          </div>
+          <button class="btn-new" id="new-project-btn">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Novo Projeto
+          </button>
+        </header>
+        <div id="ranking-body" class="ranking-body"></div>
+      </div>
+
+      <div class="tab-pane" id="tab-canal">
+        <header class="assets-header">
+          <div>
+            <div class="page-header-title">CANAL</div>
+            <div class="page-header-sub">Análise inteligente dos seus vídeos</div>
+          </div>
+        </header>
+        <div id="canal-body" class="canal-body"></div>
+      </div>
+
+
+      
+
+      <div class="modal-overlay" id="ranking-modal">
+        <div class="modal" style="max-width:480px">
+          <div class="modal-header">
+            <div>
+              <div class="modal-step-num">Ranking</div>
+              <div class="modal-step-name">MEUS DADOS</div>
+            </div>
+            <button class="modal-close" id="ranking-modal-close">
+              <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+
+          <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px;">
+
+            
+            <div class="ranking-modal-preview">
+              <div>
+                <div class="preview-pts" id="rank-preview-pts">0 pts</div>
+                <div class="preview-label">pontuação estimada</div>
+              </div>
+            </div>
+
+            
+            <div class="ranking-input-grid">
+              <div class="auth-field">
+                <label>◆ Vídeos postados</label>
+                <input type="number" id="rank-videos" min="0" placeholder="0">
+              </div>
+              <div class="auth-field">
+                <label>◆ Views totais</label>
+                <input type="number" id="rank-views" min="0" placeholder="0">
+              </div>
+              <div class="auth-field">
+                <label>◆ Motions utilizados</label>
+                <input type="number" id="rank-motions" min="0" placeholder="0">
+              </div>
+              <div class="auth-field">
+                <label>◆ Roteiros feitos</label>
+                <input type="number" id="rank-scripts" min="0" placeholder="0">
+              </div>
+            </div>
+
+            
+            <div class="ranking-checkbox-row">
+              <input type="checkbox" id="rank-watchtime">
+              <label for="rank-watchtime">
+                ⏱ Média de watch time acima de 5 minutos
+                <span class="ck-hint">· +3 pts de bônus</span>
+              </label>
+            </div>
+
+          </div>
+
+          <div
+            style="display:flex;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid var(--border);">
+            <button class="action-btn" id="ranking-cancel-btn">Cancelar</button>
+            <button class="action-btn primary" id="ranking-save-btn">Salvar</button>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="tab-pane" id="tab-estrategia">
+        <header class="strategy-header">
+          <div>
+            <div class="page-header-title">ESTRATÉGIA</div>
+            <div class="page-header-sub">Documentos e diretrizes</div>
+          </div>
+          <div id="strategy-header-actions" style="display:none;">
+            <button class="btn-new" id="strategy-new-doc-btn">
+              <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"
+                style="width:14px;height:14px;">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Novo Documento
+            </button>
+          </div>
+        </header>
+        <div id="strategy-body" class="strategy-body"></div>
+      </div>
+
+      <div class="tab-pane" id="tab-admin">
+        <header class="assets-header">
+          <div>
+            <div class="page-header-title">ADMIN</div>
+            <div class="page-header-sub">Gerenciamento de planos e usuários</div>
+          </div>
+          <button class="action-btn" id="admin-refresh-btn" title="Recarregar">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" style="width:14px;height:14px;">
+              <polyline points="23 4 23 10 17 10" />
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+            </svg>
+            Atualizar
+          </button>
+        </header>
+        <div id="admin-body" class="admin-body"></div>
+      </div>
+
+    </div>
+  </section>
+
+  
+  <div class="modal-overlay" id="step-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-step-num" id="modal-step-num"></div>
+          <div class="modal-step-name" id="modal-step-name"></div>
+        </div>
+        <button class="modal-close" id="step-modal-close"><svg width="20" height="20" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg></button>
+      </div>
+      <div class="modal-guide" id="modal-guide"></div>
+      <textarea class="modal-notes" id="modal-notes" placeholder="Suas anotações para esta etapa…"></textarea>
+      <div class="modal-footer">
+        <label class="modal-done-label"><input type="checkbox" id="modal-done-check">
+          <div class="checkbox-visual"></div><span>Marcar como concluída</span>
+        </label>
+        <div class="modal-btns"><button class="action-btn" id="modal-close-btn">Fechar</button><button
+            class="action-btn primary" id="modal-save-btn">Salvar nota</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="new-project-modal">
+    <div class="modal" style="max-width:460px">
+      <div class="modal-header">
+        <div>
+          <div class="modal-step-num">Novo projeto</div>
+          <div class="modal-step-name">CRIAR ROTEIRO</div>
+        </div>
+        <button class="modal-close" id="new-project-modal-close"><svg width="20" height="20" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg></button>
+      </div>
+      <div class="name-dialog-content"><label>Nome do projeto</label><input id="new-project-name" type="text"
+          placeholder="MEU PROJETO" maxlength="60"></div>
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px;padding:0 24px 24px;">
+        <button class="action-btn" id="new-project-cancel-btn">Cancelar</button>
+        <button class="action-btn primary" id="new-project-create-btn">Criar projeto</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="change-password-modal">
+    <div class="modal" style="max-width:420px">
+      <div class="modal-header">
+        <div>
+          <div class="modal-step-num">Segurança</div>
+          <div class="modal-step-name">ALTERAR SENHA</div>
+        </div>
+        <button class="modal-close" id="change-password-modal-close"><svg width="20" height="20" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg></button>
+      </div>
+      <div style="padding:24px;">
+        <div class="password-field"><label>Senha atual</label><input type="password" id="current-password"
+            placeholder="••••••••"></div>
+        <div class="password-field"><label>Nova senha</label><input type="password" id="new-password"
+            placeholder="••••••••">
+          <div class="password-strength" id="password-strength"></div>
+        </div>
+        <div class="password-field"><label>Confirmar nova senha</label><input type="password" id="confirm-password"
+            placeholder="••••••••"></div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid var(--border);">
+        <button class="action-btn" id="change-password-cancel-btn">Cancelar</button>
+        <button class="action-btn primary" id="change-password-save-btn">Alterar Senha</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="viewer-modal">
+    <div class="modal" style="max-width:720px">
+      <div class="modal-header">
+        <div>
+          <div class="modal-step-num" id="viewer-author"></div>
+          <div class="modal-step-name" id="viewer-title"></div>
+        </div>
+        <button class="modal-close" id="viewer-modal-close"><svg width="20" height="20" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg></button>
+      </div>
+      <div class="viewer-tabs"><button class="viewer-tab active" id="vtab-script">Roteiro</button><button
+          class="viewer-tab" id="vtab-steps">Etapas</button></div>
+      <div id="viewer-script-content"></div>
+      <div id="viewer-steps-content" style="display:none"></div>
+      <div style="display:flex;justify-content:flex-end;padding:16px;"><button class="action-btn"
+          id="viewer-close-btn">Fechar</button></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="profile-modal">
+    <div class="modal" style="max-width:420px">
+      <div class="modal-header">
+        <div>
+          <div class="modal-step-num">Configurações</div>
+          <div class="modal-step-name">MEU PERFIL</div>
+        </div>
+        <button class="modal-close" id="profile-modal-close"><svg width="20" height="20" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg></button>
+      </div>
+      <div style="margin-bottom:20px;padding:0 24px;">
+        <div
+          style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:6px;">
+          E-mail</div>
+        <div id="profile-email-display"
+          style="font-family:'DM Sans',sans-serif;font-size:0.88rem;color:var(--muted);padding:10px 14px;background:var(--panel2);border:1px solid var(--border);border-radius:5px;">
+        </div>
+      </div>
+      <div class="name-dialog-content" style="padding:0 24px 20px;"><label>Nome de exibição</label><input
+          id="profile-display-name" type="text" placeholder="COMO QUER SER CHAMADO" maxlength="60"></div>
+      <div
+        style="display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-top:1px solid var(--border);">
+        <button class="action-btn" id="change-password-btn">Alterar Senha</button>
+        <div style="display:flex;gap:8px;">
+          <button class="action-btn" id="profile-cancel-btn">Cancelar</button>
+          <button class="action-btn primary" id="profile-save-btn">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="asset-modal">
+    <div class="modal" style="max-width:600px">
+      <div class="modal-header">
+        <div>
+          <div class="modal-step-num" id="asset-modal-type"></div>
+          <div class="modal-step-name" id="asset-modal-name"></div>
+        </div>
+        <button class="modal-close" id="asset-modal-close"><svg width="20" height="20" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg></button>
+      </div>
+      <div style="padding:20px 24px 0;" id="asset-modal-preview-area"></div>
+      <button class="asset-copy-url" id="asset-copy-url-btn"><svg viewBox="0 0 24 24" fill="none">
+          <rect x="9" y="9" width="13" height="13" rx="2" />
+          <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+        </svg><span id="asset-url-display"
+          style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;"></span>Copiar URL</button>
+      <div class="asset-modal-info" id="asset-modal-info"></div>
+      <div style="display:flex;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid var(--border);">
+        <button class="action-btn" id="asset-modal-close-btn">Fechar</button>
+        <button class="action-btn primary" id="asset-download-btn" type="button"><svg
+            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" style="width:12px;height:12px;">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>Download</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-overlay" id="upgrade-modal">
+    <div class="modal" style="max-width:420px;text-align:center;">
+      <div class="modal-header" style="justify-content:flex-end;">
+        <button class="modal-close" id="upgrade-modal-close">
+          <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div style="padding:8px 32px 32px;">
+        <div id="upgrade-modal-icon" style="font-size:3rem;margin-bottom:12px;">◆</div>
+        <div id="upgrade-modal-title"
+          style="font-family:var(--font-ui);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;color:var(--muted);">
+          Recurso bloqueado
+        </div>
+        <div id="upgrade-modal-desc"
+          style="font-family:var(--font-body);font-size:.9rem;color:var(--text);line-height:1.6;margin-bottom:24px;">
+        </div>
+        <div id="upgrade-modal-plan"
+          style="font-family:var(--font-mono);font-size:.6rem;letter-spacing:2px;color:var(--muted);">
+          SEU PLANO ATUAL: <span id="upgrade-current-plan">—</span>
+
+        </div>
+        <div class="plan-div">
+          <a class="action-btn primary" href="../planos/">Ver Planos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="modal-overlay" id="board-share-modal">
+    <div class="modal" style="max-width:480px">
+      <div class="modal-header">
+        <div>
+          <div class="modal-step-num">Board</div>
+          <div class="modal-step-name" id="bsm-title">COMPARTILHAR</div>
+        </div>
+        <button class="modal-close" id="bsm-close-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <div style="padding:24px;display:flex;flex-direction:column;gap:20px;">
+
+        
+        <div
+          style="display:flex;align-items:center;gap:14px;background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:16px 20px;">
+          <div id="bsm-status-icon" style="font-size:1.8rem;flex-shrink:0;"></div>
+          <div>
+            <div id="bsm-status-title"
+              style="font-family:var(--font-ui);font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--text);margin-bottom:3px;">
+              Privado</div>
+            <div id="bsm-status-desc"
+              style="font-family:var(--font-body);font-size:.78rem;color:var(--muted);line-height:1.4;">Apenas você pode
+              ver este board.</div>
+          </div>
+        </div>
+
+        
+        <div>
+          <div
+            style="font-family:var(--font-mono);font-size:.55rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:10px;">
+            Visível para</div>
+          <div style="display:flex;flex-direction:column;gap:8px;" id="bsm-roles-list">
+            
+          </div>
+        </div>
+
+        
+        <div id="bsm-no-permission"
+          style="display:none;background:rgba(232,17,26,.07);border:1px solid rgba(232,17,26,.2);border-radius:8px;padding:14px 16px;">
+          <div
+            style="font-family:var(--font-mono);font-size:.6rem;text-transform:uppercase;letter-spacing:1px;color:var(--red);margin-bottom:4px;">
+            Acesso restrito</div>
+          <div style="font-family:var(--font-body);font-size:.78rem;color:var(--muted);line-height:1.5;">Somente membros
+            <strong style="color:var(--text);">Guardians</strong> ou <strong style="color:var(--text);">Admin</strong>
+            podem compartilhar boards publicamente.
+          </div>
+        </div>
+
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid var(--border);">
+        <button class="action-btn" id="bsm-cancel-btn">Fechar</button>
+        <button class="action-btn primary" id="bsm-toggle-btn" style="display:none;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" style="width:12px;height:12px;">
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+          </svg>
+          <span id="bsm-toggle-label">Tornar Público</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="admin-plan-modal">
+    <div class="modal" style="max-width:560px">
+      <div class="modal-header">
+        <div>
+          <div class="modal-step-num">Admin · Planos</div>
+          <div class="modal-step-name" id="admin-plan-modal-title">NOVO PLANO</div>
+        </div>
+        <button class="modal-close" id="admin-plan-modal-close">
+          <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px;">
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="auth-field">
+            <label>ID do plano <span style="color:var(--muted);font-size:.48rem;">(único, sem espaços)</span></label>
+            <input type="text" id="apm-id" placeholder="ex: guardians" maxlength="40">
+          </div>
+          <div class="auth-field">
+            <label>Nome de exibição</label>
+            <input type="text" id="apm-name" placeholder="ex: Guardians" maxlength="60">
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+          <div class="auth-field">
+            <label>Máx. projetos <span style="color:var(--muted);font-size:.48rem;">(-1 = ∞)</span></label>
+            <input type="number" id="apm-max-projects" placeholder="-1" min="-1">
+          </div>
+          <div class="auth-field">
+            <label>Máx. assets <span style="color:var(--muted);font-size:.48rem;">(-1 = ∞)</span></label>
+            <input type="number" id="apm-max-assets" placeholder="-1" min="-1">
+          </div>
+          <div class="auth-field">
+            <label>Máx. motions <span style="color:var(--muted);font-size:.48rem;">(-1 = ∞)</span></label>
+            <input type="number" id="apm-max-motions" placeholder="-1" min="-1">
+          </div>
+        </div>
+
+        <div>
+          <div
+            style="font-family:var(--font-mono);font-size:.55rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:10px;">
+            Abas liberadas</div>
+          <div class="apm-tabs-grid">
+            <label class="apm-tab-check" for="apm-tab-roteiros">
+              <input type="checkbox" id="apm-tab-roteiros">
+              <span class="apm-tab-check-box"></span>
+              Roteiros
+            </label>
+            <label class="apm-tab-check" for="apm-tab-board">
+              <input type="checkbox" id="apm-tab-board">
+              <span class="apm-tab-check-box"></span>
+              Board
+            </label>
+            <label class="apm-tab-check" for="apm-tab-titulos">
+              <input type="checkbox" id="apm-tab-titulos">
+              <span class="apm-tab-check-box"></span>
+              Títulos
+            </label>
+            <label class="apm-tab-check" for="apm-tab-skins">
+              <input type="checkbox" id="apm-tab-skins">
+              <span class="apm-tab-check-box"></span>
+              Skins
+            </label>
+            <label class="apm-tab-check" for="apm-tab-avatar">
+              <input type="checkbox" id="apm-tab-avatar">
+              <span class="apm-tab-check-box"></span>
+              Avatar
+            </label>
+            <label class="apm-tab-check" for="apm-tab-motions">
+              <input type="checkbox" id="apm-tab-motions">
+              <span class="apm-tab-check-box"></span>
+              Motions
+            </label>
+            <label class="apm-tab-check" for="apm-tab-assets">
+              <input type="checkbox" id="apm-tab-assets">
+              <span class="apm-tab-check-box"></span>
+              Texturas
+            </label>
+            <label class="apm-tab-check" for="apm-tab-ranking">
+              <input type="checkbox" id="apm-tab-ranking">
+              <span class="apm-tab-check-box"></span>
+              Ranking
+            </label>
+            <label class="apm-tab-check" for="apm-tab-estrategia">
+              <input type="checkbox" id="apm-tab-estrategia">
+              <span class="apm-tab-check-box"></span>
+              Estratégia
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid var(--border);">
+        <button class="action-btn" id="admin-plan-cancel-btn">Cancelar</button>
+        <button class="action-btn primary" id="admin-plan-save-btn">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="modal-overlay" id="admin-user-modal">
+    <div class="modal" style="max-width:480px">
+      <div class="modal-header">
+        <div>
+          <div class="modal-step-num">Admin · Usuário</div>
+          <div class="modal-step-name" id="aum-name"
+            style="max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></div>
+        </div>
+        <button class="modal-close" id="admin-user-modal-close">
+          <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <div style="padding:20px 24px;display:flex;flex-direction:column;gap:14px;">
+
+        <div style="font-family:var(--font-mono);font-size:.6rem;color:var(--muted);letter-spacing:1px;" id="aum-email">
+        </div>
+
+        <input type="hidden" id="aum-user-id">
+        <input type="hidden" id="aum-sig-id">
+
+        <div class="auth-field">
+          <label>Role</label>
+          <select id="aum-role"
+            style="width:100%;background:var(--panel2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--font-body);font-size:.9rem;padding:12px 14px;outline:none;">
+            <option value="free">free</option>
+            <option value="member">member</option>
+            <option value="admin">admin</option>
+          </select>
+        </div>
+
+        <div class="auth-field">
+          <label>Plano</label>
+          <select id="aum-plan"
+            style="width:100%;background:var(--panel2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--font-body);font-size:.9rem;padding:12px 14px;outline:none;">
+            
+          </select>
+        </div>
+
+        <div class="auth-field">
+          <label>Expira em <span style="color:var(--muted);font-size:.48rem;">(deixe vazio = sem
+              expiração)</span></label>
+          <input type="date" id="aum-expires"
+            style="width:100%;background:var(--panel2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-family:var(--font-body);font-size:.9rem;padding:12px 14px;outline:none;">
+        </div>
+
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid var(--border);">
+        <button class="action-btn" id="admin-user-cancel-btn">Cancelar</button>
+        <button class="action-btn primary" id="admin-user-save-btn">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-hidden="true"></div>
+
+  <script src="/assets/scripts/client/config.js"></script>
+
+  <script src="/assets/scripts/client/utils.js?v=toast-2"></script>
+  <script src="/assets/scripts/client/supabase.js"></script>
+  <script src="/assets/scripts/pages/roteiros.js"></script>
+  <script src="/assets/scripts/pages/assets.js?v=texture-packs-4"></script>
+  <script src="/assets/scripts/pages/estrategia.js"></script>
+  <script src="/assets/scripts/client/app.js"></script>
+  <script src="/assets/scripts/pages/avatar.js?v=avatar-clean-1"></script>
+  <script src="/assets/scripts/pages/board.js"></script>
+  <script src="/assets/scripts/pages/ranking.js"></script>
+  <script src="/assets/scripts/pages/skins.js"></script>
+  <script src="/assets/scripts/client/admin.js"></script>
+  <script src="/assets/scripts/pages/canal.js"></script>
+  <script src="/assets/scripts/pages/musicas.js"></script>
+</body>
+
+</html>

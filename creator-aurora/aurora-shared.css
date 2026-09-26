@@ -1,0 +1,498 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik+Mono+One&family=Manrope:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* Shared visual system for creator.mcaurora.com.br */
+:root {
+  --aurora-void: #100c16;
+  --aurora-deep: #16101f;
+  --aurora-panel: #1e1829;
+  --aurora-panel-2: #241d31;
+  --aurora-purple: #a996e0;
+  --aurora-purple-dark: #6f5aa8;
+  --aurora-gold: #f0c34e;
+  --aurora-cyan: #63d9e0;
+  --aurora-text: #f1f0f6;
+  --aurora-muted: #aca6bd;
+  --aurora-ink: #0a080d;
+
+  --red: #a996e0;
+  --red-a10: rgba(169, 150, 224, .10);
+  --red-a20: rgba(169, 150, 224, .20);
+  --red-a40: rgba(169, 150, 224, .40);
+  --gold: #f0c34e;
+  --gold-dark: #b58a20;
+  --gold-a10: rgba(240, 195, 78, .10);
+  --gold-a20: rgba(240, 195, 78, .20);
+  --green: #63d9e0;
+  --green-a10: rgba(99, 217, 224, .10);
+  --green-a20: rgba(99, 217, 224, .20);
+  --bg: #100c16;
+  --dark: #16101f;
+  --darker: #100c16;
+  --panel: #1e1829;
+  --panel2: #241d31;
+  --surface: rgba(36, 29, 49, .64);
+  --surface2: rgba(169, 150, 224, .11);
+  --border: rgba(255, 255, 255, .10);
+  --border2: rgba(255, 255, 255, .22);
+  --border-bright: rgba(169, 150, 224, .48);
+  --text: #f1f0f6;
+  --text2: rgba(241, 240, 246, .68);
+  --text3: rgba(241, 240, 246, .43);
+  --muted: #aca6bd;
+  --purple: #a996e0;
+  --ff: 'Manrope', sans-serif;
+  --fm: 'IBM Plex Mono', monospace;
+  --font-display: 'Rubik Mono One', system-ui, sans-serif;
+  --font-comic: 'Press Start 2P', monospace;
+  --font-ui: 'IBM Plex Mono', monospace;
+  --font-body: 'Manrope', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+html {
+  color-scheme: dark;
+  scrollbar-color: var(--aurora-panel-2) var(--aurora-void);
+}
+
+body {
+  background: var(--aurora-void);
+  color: var(--aurora-text);
+  font-family: 'Manrope', sans-serif;
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(169, 150, 224, .025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(169, 150, 224, .025) 1px, transparent 1px) !important;
+  background-size: 32px 32px !important;
+  opacity: 1 !important;
+}
+
+::selection {
+  background: var(--aurora-purple);
+  color: var(--aurora-ink);
+}
+
+.nav-logo img,
+.footer-logo img,
+.auth-logo img,
+.intro-icon {
+  image-rendering: pixelated;
+  border-radius: 0 !important;
+}
+
+.nav-logo-name,
+.footer-logo-name,
+.auth-logo-name,
+.sidebar-logo-main {
+  font-family: 'Press Start 2P', monospace !important;
+  letter-spacing: .03em !important;
+  text-transform: uppercase;
+}
+
+.nav-logo-name > span,
+.footer-logo-name > span,
+.auth-logo-name > span,
+.sidebar-logo-dot {
+  color: var(--aurora-purple) !important;
+  -webkit-text-fill-color: var(--aurora-purple) !important;
+}
+
+.pixel-cut,
+.hero-card,
+.feat,
+.how-preview,
+.tc,
+.cta-card,
+.plan,
+.auth-card,
+.dash-card,
+.dash-upgrade,
+.feature-card,
+.participant-card,
+.stats-strip,
+.modal,
+.project-card,
+.public-card,
+.asset-card,
+.asset-stat,
+.board-card,
+.list,
+.security-card {
+  border-radius: 0 !important;
+  clip-path: polygon(9px 0, calc(100% - 9px) 0, 100% 9px, 100% calc(100% - 9px), calc(100% - 9px) 100%, 9px 100%, 0 calc(100% - 9px), 0 9px);
+}
+
+button,
+input,
+textarea,
+select,
+.btn-primary,
+.btn-secondary,
+.nav-cta,
+.nav-pill,
+.nav-back,
+.plan-cta,
+.action-btn,
+.card-btn,
+.asset-btn,
+.board-btn,
+.sidebar-btn,
+.dash-panel-btn,
+.dash-upgrade-btn {
+  border-radius: 0 !important;
+}
+
+.btn-primary,
+.nav-cta,
+.auth-submit,
+.auth-btn,
+.plan-cta.cta-pro,
+.dash-panel-btn,
+.action-btn.primary {
+  background: var(--aurora-purple) !important;
+  border-color: var(--aurora-purple) !important;
+  color: var(--aurora-ink) !important;
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, .28), inset -2px -2px 0 rgba(0, 0, 0, .3), 4px 4px 0 rgba(10, 8, 13, .55) !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.btn-primary:hover,
+.nav-cta:hover,
+.auth-submit:hover,
+.auth-btn:hover,
+.plan-cta.cta-pro:hover,
+.dash-panel-btn:hover,
+.action-btn.primary:hover {
+  background: var(--aurora-gold) !important;
+  border-color: var(--aurora-gold) !important;
+  transform: translate(-1px, -2px) !important;
+}
+
+/* Public product page */
+body.aurora-public .ambient {
+  background:
+    radial-gradient(ellipse 70% 38% at 50% 0%, rgba(169, 150, 224, .28), transparent 70%),
+    linear-gradient(180deg, #0d0a13 0%, #1c1728 35%, #100c16 100%);
+}
+
+body.aurora-public .ambient::before,
+body.aurora-public .ambient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+body.aurora-public .ambient::before {
+  background:
+    linear-gradient(135deg, transparent 35%, rgba(99, 217, 224, .08) 50%, transparent 65%),
+    linear-gradient(45deg, transparent 30%, rgba(240, 195, 78, .06) 50%, transparent 70%);
+  filter: blur(26px);
+}
+
+body.aurora-public .ambient::after {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, .6) 1px, transparent 1px);
+  background-size: 120px 96px;
+  opacity: .25;
+}
+
+body.aurora-public nav,
+body.aurora-app nav {
+  top: 14px;
+  left: 50%;
+  right: auto;
+  width: min(1180px, calc(100% - 32px));
+  transform: translateX(-50%);
+  height: 62px;
+  padding: 0 24px;
+  border: 2px solid var(--aurora-ink);
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, .07), inset -2px -2px 0 rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .38);
+}
+
+body.aurora-public nav::before,
+body.aurora-app nav::before {
+  background: rgba(16, 12, 22, .90) !important;
+  border: 0 !important;
+  backdrop-filter: blur(12px);
+}
+
+body.aurora-public .hero {
+  padding-top: 150px;
+}
+
+body.aurora-public .hero-badge,
+body.aurora-public .proof-stats,
+body.aurora-public .hero-card,
+body.aurora-public .feat-grid {
+  border: 2px solid var(--aurora-ink) !important;
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, .07), inset -2px -2px 0 rgba(0, 0, 0, .38), 0 24px 56px rgba(0, 0, 0, .45);
+}
+
+body.aurora-public .hero-badge {
+  border-radius: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+body.aurora-public .hero-badge-dot,
+body.aurora-public .hds-dot,
+body.aurora-public .hdm-card-tag {
+  border-radius: 0;
+}
+
+body.aurora-public .hero-h1,
+body.aurora-public .section-title,
+body.aurora-public .cta-h {
+  font-family: 'Rubik Mono One', system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+}
+
+body.aurora-public .hero-h1 {
+  font-size: clamp(2.1rem, 4.6vw, 3.9rem);
+  line-height: 1.14;
+}
+
+body.aurora-public .hero-h1 .accent-g {
+  background: linear-gradient(135deg, var(--aurora-gold), #fff3bd 55%, var(--aurora-gold));
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+body.aurora-public .hero-h1 .accent-r,
+body.aurora-public .section-eyebrow,
+body.aurora-public .feat-tag::before {
+  color: var(--aurora-purple);
+}
+
+body.aurora-public .hero-visual-glow {
+  background: radial-gradient(ellipse, rgba(169, 150, 224, .36), transparent 70%);
+}
+
+body.aurora-public .hero-card {
+  background: rgba(22, 16, 31, .92);
+  border-radius: 0;
+  clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px);
+}
+
+body.aurora-public .hero-card-bar,
+body.aurora-public .hero-dash-sidebar {
+  background: rgba(36, 29, 49, .62);
+}
+
+body.aurora-public .hdm-badge {
+  color: var(--aurora-cyan);
+  background: rgba(99, 217, 224, .10);
+  border-color: rgba(99, 217, 224, .28);
+}
+
+body.aurora-public .feat-grid {
+  gap: 2px;
+  background: var(--aurora-ink);
+  border-radius: 0;
+  clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px);
+}
+
+body.aurora-public .feat,
+body.aurora-public .tc,
+body.aurora-public .how-preview,
+body.aurora-public .cta-card {
+  background: linear-gradient(160deg, var(--aurora-panel-2), var(--aurora-panel));
+  border-color: rgba(255, 255, 255, .10);
+  box-shadow: inset 3px 3px 0 rgba(255, 255, 255, .05), inset -3px -3px 0 rgba(0, 0, 0, .35);
+}
+
+body.aurora-public .feat-icon,
+body.aurora-public .how-step-num,
+body.aurora-public .cta-card-icon,
+body.aurora-public .tc-avatar {
+  border-radius: 0;
+  color: var(--aurora-gold);
+}
+
+body.aurora-public .how-step.active .how-step-num {
+  background: var(--aurora-purple);
+  border-color: var(--aurora-purple);
+  color: var(--aurora-ink);
+}
+
+body.aurora-public .proof,
+body.aurora-public .features,
+body.aurora-public .how,
+body.aurora-public .testi,
+body.aurora-public .cta-wrap {
+  border-top: 12px solid transparent;
+  border-image: repeating-linear-gradient(90deg, var(--aurora-purple-dark) 0 18px, var(--aurora-gold) 18px 36px, var(--aurora-panel) 36px 54px, var(--aurora-purple-dark) 54px 72px) 12;
+}
+
+/* Account and pricing pages */
+body.aurora-app .ambient {
+  background:
+    radial-gradient(ellipse 60% 35% at 50% 0%, rgba(169, 150, 224, .20), transparent 70%),
+    linear-gradient(180deg, #0d0a13, var(--aurora-void));
+}
+
+body.aurora-app .page {
+  padding-top: 124px;
+}
+
+body.aurora-app .page-h1,
+body.aurora-app .auth-title,
+body.aurora-app .dash-greeting,
+body.aurora-app .plan-name,
+body.aurora-app .dash-plan-name {
+  font-family: 'Rubik Mono One', system-ui, sans-serif !important;
+  font-weight: 400 !important;
+  text-transform: uppercase;
+}
+
+body.aurora-app .plan,
+body.aurora-app .auth-card,
+body.aurora-app .dash-card,
+body.aurora-app .dash-upgrade {
+  background: linear-gradient(160deg, var(--aurora-panel-2), var(--aurora-panel)) !important;
+  border: 2px solid var(--aurora-ink) !important;
+  box-shadow: inset 3px 3px 0 rgba(255, 255, 255, .06), inset -3px -3px 0 rgba(0, 0, 0, .38), 0 24px 48px rgba(0, 0, 0, .36) !important;
+}
+
+body.aurora-app .plan.featured {
+  border-color: var(--aurora-purple-dark) !important;
+}
+
+body.aurora-app .page-eyebrow,
+body.aurora-app .compare-eyebrow,
+body.aurora-app .faq-eyebrow,
+body.aurora-app .dash-plan-label {
+  color: var(--aurora-purple) !important;
+}
+
+/* Panel */
+body.aurora-panel {
+  background: var(--aurora-void);
+}
+
+body.aurora-panel #auth-screen,
+body.aurora-panel #initial-loading {
+  background:
+    radial-gradient(ellipse 65% 42% at 50% 5%, rgba(169, 150, 224, .26), transparent 68%),
+    linear-gradient(180deg, #0d0a13, var(--aurora-void)) !important;
+}
+
+body.aurora-panel .intro-bg {
+  background-image:
+    linear-gradient(rgba(169, 150, 224, .04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(169, 150, 224, .04) 1px, transparent 1px) !important;
+  background-size: 32px 32px !important;
+}
+
+body.aurora-panel .intro-wordmark,
+body.aurora-panel .auth-logo-main,
+body.aurora-panel .sidebar-logo-main,
+body.aurora-panel .page-header-title,
+body.aurora-panel .dash-hero h1,
+body.aurora-panel .card-title,
+body.aurora-panel .projects-empty h3,
+body.aurora-panel .modal-step-name {
+  font-family: 'Rubik Mono One', system-ui, sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: .02em !important;
+}
+
+body.aurora-panel .sidebar {
+  background: rgba(22, 16, 31, .97);
+  border-right: 2px solid var(--aurora-ink);
+  box-shadow: inset -3px 0 0 rgba(169, 150, 224, .05), 12px 0 32px rgba(0, 0, 0, .24);
+}
+
+body.aurora-panel .nav-item {
+  font-family: 'IBM Plex Mono', monospace;
+  border-radius: 0 !important;
+}
+
+body.aurora-panel .nav-item.active {
+  background: var(--aurora-purple) !important;
+  color: var(--aurora-ink) !important;
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, .25), inset -2px -2px 0 rgba(0, 0, 0, .25), 4px 4px 0 rgba(10, 8, 13, .45) !important;
+}
+
+body.aurora-panel .nav-item.active svg {
+  stroke: var(--aurora-ink) !important;
+}
+
+body.aurora-panel .dash-header,
+body.aurora-panel .board-header,
+body.aurora-panel .assets-header,
+body.aurora-panel .strategy-header,
+body.aurora-panel .ranking-header {
+  background: rgba(22, 16, 31, .78);
+  backdrop-filter: blur(10px);
+}
+
+body.aurora-panel .project-card,
+body.aurora-panel .public-card,
+body.aurora-panel .asset-card,
+body.aurora-panel .asset-stat,
+body.aurora-panel .modal,
+body.aurora-panel .board-card,
+body.aurora-panel .list,
+body.aurora-panel .security-card,
+body.aurora-panel .auth-box {
+  background: linear-gradient(160deg, var(--aurora-panel-2), var(--aurora-panel)) !important;
+  border-color: rgba(169, 150, 224, .28) !important;
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, .05), inset -2px -2px 0 rgba(0, 0, 0, .34) !important;
+}
+
+body.aurora-panel .prog-dot.done,
+body.aurora-panel .checkbox-visual,
+body.aurora-panel .loading-bar-fill {
+  background: var(--aurora-purple) !important;
+}
+
+body.aurora-panel .dash-hero h1 span,
+body.aurora-panel .card-btn:hover,
+body.aurora-panel .asset-btn:hover,
+body.aurora-panel .sidebar-btn:hover {
+  color: var(--aurora-gold) !important;
+  border-color: var(--aurora-gold) !important;
+}
+
+body.aurora-panel #auth-screen.active ~ .sidebar-toggle {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  body.aurora-public nav,
+  body.aurora-app nav {
+    top: 8px;
+    width: calc(100% - 16px);
+    padding: 0 14px;
+  }
+
+  .nav-logo-name {
+    font-size: .65rem !important;
+  }
+
+  body.aurora-public .hero-h1 {
+    font-size: clamp(1.7rem, 8.2vw, 2.45rem);
+  }
+
+  body.aurora-panel .auth-logo-main {
+    font-size: 2.3rem !important;
+    line-height: 1.22 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
