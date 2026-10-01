@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://creator.mcaurora.com.br/sitemap.xml
