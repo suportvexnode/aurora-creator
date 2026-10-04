@@ -29,6 +29,7 @@ const EFEITOS_SONOROS_TAGS = [
     { id: 'woosh', label: 'Woosh', icon: uiIcon('compass'), color: '#ab47bc' },
     { id: 'memes', label: 'Memes', icon: uiIcon('mask'), color: '#ef5350' },
     { id: 'rizer', label: 'Rizer', icon: uiIcon('bolt'), color: '#ffa726' },
+    { id: 'suspense', label: 'Suspense', icon: uiIcon('compass'), color: '#ab47bc' },
     { id: 'minecraft', label: 'Minecraft', icon: uiIcon('cube'), color: '#66bb6a' },
     { id: 'ambiente', label: 'Ambiente', icon: uiIcon('leaf'), color: '#26c6da' },
 ];
