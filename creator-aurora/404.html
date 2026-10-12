@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página não encontrada | Aurora Creator</title>
+  <meta name="description" content="A página que você procurou não foi encontrada. Continue explorando as ferramentas do Aurora Creator.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#100c16">
+  <link rel="icon" type="image/png" href="/aurora-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      color-scheme: dark;
+      --bg: #100c16;
+      --surface: rgba(255, 255, 255, .045);
+      --surface-hover: rgba(255, 255, 255, .075);
+      --border: rgba(255, 255, 255, .11);
+      --text: #f4f0f7;
+      --muted: #a9a1b2;
+      --purple: #a996e0;
+      --cyan: #63d9e0;
+    }
+
+    html { min-height: 100%; background: var(--bg); }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 22% 12%, rgba(120, 89, 170, .15), transparent 32rem),
+        radial-gradient(circle at 84% 82%, rgba(99, 217, 224, .08), transparent 28rem),
+        var(--bg);
+      font-family: "DM Sans", system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, #000, transparent 90%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .header {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+    }
+
+    .brand img { width: 32px; height: 32px; border-radius: 9px; }
+
+    .header-link {
+      color: var(--muted);
+      font-size: .92rem;
+      transition: color .2s ease;
+    }
+
+    .header-link:hover { color: var(--text); }
+
+    main {
+      min-height: calc(100vh - 83px);
+      display: grid;
+      align-items: center;
+      padding: 72px 0 88px;
+    }
+
+    .error-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr);
+      align-items: center;
+      gap: clamp(48px, 8vw, 108px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 24px;
+      color: var(--purple);
+      font: 500 .75rem/1 "Geist Mono", monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+
+    .code {
+      margin: 0 0 8px;
+      color: transparent;
+      background: linear-gradient(120deg, #fff 15%, var(--purple) 56%, var(--cyan));
+      background-clip: text;
+      font-size: clamp(5.8rem, 17vw, 10.5rem);
+      line-height: .82;
+      letter-spacing: -.085em;
+    }
+
+    h1 {
+      max-width: 620px;
+      margin: 28px 0 16px;
+      font-size: clamp(2rem, 5vw, 3.7rem);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+    }
+
+    .lead {
+      max-width: 590px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.12rem);
+      line-height: 1.7;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 20px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: var(--surface);
+      font-size: .92rem;
+      font-weight: 500;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .button.primary { color: #140f1b; border-color: transparent; background: #f3eff6; }
+    .button:hover { transform: translateY(-2px); border-color: rgba(169, 150, 224, .5); background: var(--surface-hover); }
+    .button.primary:hover { background: #fff; }
+    .button svg { width: 17px; height: 17px; }
+
+    .tools {
+      padding: 9px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(15, 11, 21, .58);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .24);
+      backdrop-filter: blur(16px);
+    }
+
+    .tools-label {
+      padding: 14px 14px 10px;
+      color: #7f7688;
+      font: 500 .69rem/1 "Geist Mono", monospace;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .tool {
+      display: grid;
+      grid-template-columns: 42px 1fr 20px;
+      align-items: center;
+      gap: 13px;
+      padding: 13px;
+      border-radius: 11px;
+      transition: background .2s ease;
+    }
+
+    .tool:hover { background: var(--surface-hover); }
+    .tool + .tool { border-top: 1px solid rgba(255, 255, 255, .065); }
+
+    .tool-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--purple);
+      background: var(--surface);
+    }
+
+    .tool-icon svg { width: 20px; height: 20px; }
+    .tool strong { display: block; font-size: .93rem; font-weight: 500; }
+    .tool small { display: block; margin-top: 3px; color: #8e8597; font-size: .78rem; }
+    .arrow { color: #6f6678; font-size: 1.1rem; }
+
+    @media (max-width: 780px) {
+      .error-layout { grid-template-columns: 1fr; }
+      .code { font-size: clamp(6rem, 30vw, 9rem); }
+      main { align-items: start; padding-top: 64px; }
+    }
+
+    @media (max-width: 480px) {
+      .shell { width: min(100% - 28px, 1120px); }
+      .header { min-height: 70px; }
+      main { min-height: calc(100vh - 71px); }
+      .brand span { font-size: .92rem; }
+      .actions, .button { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+    <header class="header">
+      <a class="brand" href="/" aria-label="Voltar ao início do Aurora Creator">
+        <img src="/aurora-icon.png" alt="" width="32" height="32">
+        <span>Aurora Creator</span>
+      </a>
+      <a class="header-link" href="/painel/">Abrir painel</a>
+    </header>
+
+    <main>
+      <div class="error-layout">
+        <section aria-labelledby="error-title">
+          <div class="eyebrow">Página não encontrada</div>
+          <p class="code" aria-hidden="true">404</p>
+          <h1 id="error-title">Esta página saiu do mapa.</h1>
+          <p class="lead">O endereço pode ter mudado ou não existir mais. Volte ao início ou continue por uma das ferramentas do Aurora Creator.</p>
+          <div class="actions">
+            <a class="button primary" href="/">
+              Voltar ao início
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+            <a class="button" href="/painel/">Acessar meu painel</a>
+          </div>
+        </section>
+
+        <nav class="tools" aria-label="Ferramentas públicas">
+          <div class="tools-label">Continue explorando</div>
+          <a class="tool" href="/avatar/">
+            <span class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="3.3"/><path d="M5.5 19c.8-3.7 3-5.5 6.5-5.5s5.7 1.8 6.5 5.5"/></svg></span>
+            <span><strong>Avatar Maker</strong><small>Crie renders da sua skin</small></span>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="tool" href="/assets/">
+            <span class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7.5h6l1.7 2H20v8.7a1.8 1.8 0 0 1-1.8 1.8H5.8A1.8 1.8 0 0 1 4 18.2V7.5Z"/><path d="M4 10h16"/></svg></span>
+            <span><strong>Texturas</strong><small>Vanilla e Bare Bones em alta qualidade</small></span>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="tool" href="/canal/">
+            <span class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"/></svg></span>
+            <span><strong>Análise de Canal</strong><small>Entenda o desempenho do seu canal</small></span>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+        </nav>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
