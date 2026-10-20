@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatar Maker Minecraft Grátis | Aurora Creator</title>
+  <meta name="description" content="Crie renders de skins Minecraft nos modelos Steve e Alex. Gere frente, costas, laterais e braços em alta qualidade, grátis e sem cadastro.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://creator.mcaurora.com.br/avatar/">
+  <meta name="theme-color" content="#100c16">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Aurora Creator">
+  <meta property="og:title" content="Avatar Maker Minecraft Grátis">
+  <meta property="og:description" content="Transforme skins Minecraft em renders de Steve ou Alex, gratuitamente e sem cadastro.">
+  <meta property="og:url" content="https://creator.mcaurora.com.br/avatar/">
+  <meta property="og:image" content="https://creator.mcaurora.com.br/aurora-icon.png">
+  <meta property="og:image:alt" content="Aurora Creator — Avatar Maker Minecraft">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Avatar Maker Minecraft Grátis">
+  <meta name="twitter:description" content="Gere renders de skins Minecraft gratuitamente e sem cadastro.">
+  <meta name="twitter:image" content="https://creator.mcaurora.com.br/aurora-icon.png">
+  <link rel="icon" href="../aurora-icon.png" type="image/png">
+  <link rel="stylesheet" href="../assets/css/style.css?v=icons-1">
+  <link rel="stylesheet" href="../aurora-shared.css?v=icons-1">
+  <link rel="stylesheet" href="../tools.css?v=aurora-tools-4">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Avatar Maker Minecraft","url":"https://creator.mcaurora.com.br/avatar/","applicationCategory":"DesignApplication","operatingSystem":"Web","inLanguage":"pt-BR","description":"Ferramenta gratuita para gerar renders de skins Minecraft nos modelos Steve e Alex.","offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"}}
+  </script>
+</head>
+<body class="tool-page" data-public-tool="avatar">
+  <header class="tool-nav">
+    <a class="tool-brand" href="../"><img src="../aurora-icon.png" alt=""><span><strong>Aurora</strong><br>Creator</span></a>
+    <nav class="tool-nav-links" aria-label="Ferramentas públicas">
+      <a class="active" href="../avatar/">Avatar Maker</a>
+      <a href="../assets/">Texturas</a>
+      <a href="../canal/">Canal</a>
+    </nav>
+    <a class="tool-panel-link" href="../painel/">Abrir painel</a>
+  </header>
+
+  <main class="tool-shell">
+    <section class="tool-hero">
+      <div>
+        <div class="tool-eyebrow">Ferramenta pública · sem login</div>
+        <h1>Avatar <span>Maker</span></h1>
+      </div>
+      <div class="tool-intro"><strong>Sua skin pronta para produção.</strong>Busque um jogador pelo nick ou envie um arquivo PNG. A ferramenta gera vistas limpas para thumbnails, motions e materiais de divulgação.</div>
+    </section>
+
+    <section class="tool-workspace" aria-label="Avatar Maker">
+      <div class="tool-workspace-head"><span>Gerador de renders Minecraft</span><span class="tool-status">Processamento local</span></div>
+      <div class="tool-content">
+        <div class="avatar-panel">
+          <div class="input-area">
+            <div class="avatar-tabs" role="tablist">
+              <button class="avatar-tab active" data-tab="nick" type="button">Por Nick</button>
+              <button class="avatar-tab" data-tab="file" type="button">Por Arquivo</button>
+            </div>
+            <div class="avatar-tab-panel active" id="avatar-panel-nick">
+              <input type="text" id="avatar-nick" placeholder="Digite o nick do jogador" autocomplete="off">
+              <button class="btn-gerar" id="avatar-load-nick" type="button">Gerar</button>
+            </div>
+            <div class="avatar-player-id" id="avatar-player-id" style="display:none;">
+              <span>UUID do jogador</span><code id="avatar-uuid">—</code><button class="action-btn" id="avatar-copy-uuid" type="button">Copiar</button>
+            </div>
+            <div class="avatar-tab-panel" id="avatar-panel-file">
+              <div class="drop-zone" id="avatar-drop-zone"><span id="avatar-drop-label"><span data-ui-icon="upload"></span>Clique ou arraste uma skin (.png)</span></div>
+              <input type="file" id="avatar-file-input" accept="image/png">
+              <div style="display:flex;justify-content:flex-end;margin-top:10px;"><button class="btn-gerar" id="avatar-load-file" type="button">Gerar</button></div>
+            </div>
+          </div>
+
+          <div class="avatar-download-skin-wrap">
+            <div class="avatar-section-label">Download da Skin</div>
+            <div class="avatar-download-skin-btns">
+              <button class="action-btn" id="avatar-download-skin-original" type="button">⬇ Skin Original (64×64)</button>
+              <button class="action-btn primary" id="avatar-download-skin-2048" type="button">⬇ Skin HD (2048×2048)</button>
+            </div>
+          </div>
+
+          <div class="error" id="avatar-error" role="status"></div>
+          <div class="grid-heads">
+            <div class="card"><p>Frente</p><canvas id="cv-front"></canvas><button class="download" data-canvas="cv-front" data-name="frente">Baixar</button></div>
+            <div class="card"><p>Lado esquerdo</p><canvas id="cv-left"></canvas><button class="download" data-canvas="cv-left" data-name="esquerdo">Baixar</button></div>
+            <div class="card"><p>Lado direito</p><canvas id="cv-right"></canvas><button class="download" data-canvas="cv-right" data-name="direito">Baixar</button></div>
+          </div>
+          <div class="arms-wrapper">
+            <div class="card-arms"><p>Braços <span id="model-badge" class="model-badge" style="display:none"></span></p><canvas id="cv-arms"></canvas><button class="download" data-canvas="cv-arms" data-name="bracos">Baixar</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="tool-note"><span>As imagens são processadas no seu navegador e não exigem uma conta.</span><a href="../painel/">Abrir as demais ferramentas no painel →</a></div>
+  </main>
+  <div id="toast"></div>
+  <footer class="tool-footer">Aurora Creator · creator.mcaurora.com.br</footer>
+  <script src="../assets/scripts/client/utils.js?v=icons-1"></script>
+  <script src="../assets/scripts/pages/avatar.js?v=avatar-clean-1"></script>
+</body>
+</html>
